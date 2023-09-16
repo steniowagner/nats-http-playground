@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "npx ts-node src/server.ts",
+    "client": "npx ts-node src/client.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +14,8 @@
     "@types/node": "^20.6.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "nats": "^2.16.0"
   }
 }
