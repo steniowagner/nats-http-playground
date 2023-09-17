@@ -1,8 +1,10 @@
 import { connect, StringCodec } from "nats";
 
+import CONSTANTS from "./constants";
+
 (async () => {
   const server = await connect({
-    servers: "demo.nats.io",
+    servers: CONSTANTS.SERVER,
   });
   const codec = StringCodec();
   setInterval(() => {

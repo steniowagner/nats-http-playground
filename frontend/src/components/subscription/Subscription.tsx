@@ -1,5 +1,4 @@
 import {
-  Input,
   Text,
   Button,
   Box,
@@ -8,6 +7,9 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  Radio,
+  RadioGroup,
+  Stack,
 } from "@chakra-ui/react";
 
 import { SubscribeParams } from "../../hooks/use-nats";
@@ -27,11 +29,15 @@ export const Subscription = (props: SubscriptionProps) => {
         Subject (topic)
       </Text>
       <Box h="1" />
-      <Input
-        onChange={subscription.onChangeSubject}
+      <RadioGroup
         value={subscription.subject}
-        isDisabled={subscription.isSubscribed}
-      />
+        onChange={subscription.onChangeSubject}
+      >
+        <Stack direction="column">
+          <Radio value="never-ending-streaming">never-ending-streaming</Radio>
+          <Radio value="api-event">api-event</Radio>
+        </Stack>
+      </RadioGroup>
       <Box h="4" />
       <Text fontSize="medium" as="b">
         Unsubscribe after N calls (optional)

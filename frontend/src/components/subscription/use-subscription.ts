@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { SubscribeParams } from "../../hooks/use-nats";
 
@@ -8,11 +8,11 @@ type UseSubscriptionParams = {
 };
 
 export const useSubscription = (params: UseSubscriptionParams) => {
+  const [subject, setSubject] = useState("never-ending-streaming");
   const [unsubscribeAfterNMessages, setUnsubscribeAfterNMessages] =
     useState(-1);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [messages, setMessages] = useState<unknown[]>([]);
-  const [subject, setSubject] = useState("");
 
   const handleReceiveMessage = useCallback((message: unknown) => {
     setMessages((messages: unknown[]) => [message, ...messages]);
@@ -44,8 +44,7 @@ export const useSubscription = (params: UseSubscriptionParams) => {
   }, [messages]);
 
   return {
-    onChangeSubject: (event: ChangeEvent<HTMLInputElement>) =>
-      setSubject(event.target.value),
+    onChangeSubject: setSubject,
     unsubscribeAfterNMessages,
     onChangeUnsubscribeAfterNMessages: (value: string) =>
       setUnsubscribeAfterNMessages(parseInt(value)),
