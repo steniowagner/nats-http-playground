@@ -15,7 +15,6 @@ export const useSubscription = (params: UseSubscriptionParams) => {
   const [subject, setSubject] = useState("");
 
   const handleReceiveMessage = useCallback((message: unknown) => {
-    console.log(message);
     setMessages((messages: unknown[]) => [message, ...messages]);
   }, []);
 
