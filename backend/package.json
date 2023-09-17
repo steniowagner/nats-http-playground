@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "npx ts-node src/server.ts",
-    "client": "npx ts-node src/client.ts"
+    "never:ending": "npx ts-node src/never-ending-streaming.ts"
   },
   "keywords": [],
   "author": "",
