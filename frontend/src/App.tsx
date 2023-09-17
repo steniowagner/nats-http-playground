@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Container } from "@chakra-ui/react";
 
-import { LoadingNats, Subscription } from "./components";
+import { LoadingNats, SubscribeSingleSubject } from "./components";
 import { useNats } from "./hooks";
 
 export const App = () => {
@@ -23,7 +23,7 @@ export const App = () => {
       {nats.isConnecting && <LoadingNats />}
       {nats.isConnected && (
         <>
-          <Subscription
+          <SubscribeSingleSubject
             onSubscribe={nats.subscribe}
             onUnsubscribe={nats.unsubscribe}
           />

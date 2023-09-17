@@ -2,12 +2,14 @@ import { useCallback, useEffect, useState } from "react";
 
 import { SubscribeParams } from "../../hooks/use-nats";
 
-type UseSubscriptionParams = {
+type UseSubscribeSingleSubjectParams = {
   onSubscribe: (params: SubscribeParams) => void;
   onUnsubscribe: (subject: string) => void;
 };
 
-export const useSubscription = (params: UseSubscriptionParams) => {
+export const useSubscribeSingleSubject = (
+  params: UseSubscribeSingleSubjectParams
+) => {
   const [subject, setSubject] = useState("never-ending-streaming");
   const [unsubscribeAfterNMessages, setUnsubscribeAfterNMessages] =
     useState(-1);

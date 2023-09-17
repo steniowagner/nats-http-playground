@@ -13,25 +13,29 @@ import {
 } from "@chakra-ui/react";
 
 import { SubscribeParams } from "../../hooks/use-nats";
-import { useSubscription } from "./use-subscription";
+import { useSubscribeSingleSubject } from "./use-subscribe-single-subject";
 
-type SubscriptionProps = {
+type SubscribeSingleSubjectProps = {
   onSubscribe: (params: SubscribeParams) => void;
   onUnsubscribe: (subject: string) => void;
 };
 
-export const Subscription = (props: SubscriptionProps) => {
-  const subscription = useSubscription(props);
+export const SubscribeSingleSubject = (props: SubscribeSingleSubjectProps) => {
+  const subscribeSingleSubject = useSubscribeSingleSubject(props);
 
   return (
     <Box w="300px">
+      <Text fontSize="3xl" as="b">
+        Single subject
+      </Text>
+      <Box h="6" />
       <Text fontSize="medium" as="b">
         Subject (topic)
       </Text>
       <Box h="1" />
       <RadioGroup
-        value={subscription.subject}
-        onChange={subscription.onChangeSubject}
+        value={subscribeSingleSubject.subject}
+        onChange={subscribeSingleSubject.onChangeSubject}
       >
         <Stack direction="column">
           <Radio value="never-ending-streaming">never-ending-streaming</Radio>
@@ -44,10 +48,10 @@ export const Subscription = (props: SubscriptionProps) => {
       </Text>
       <Box h="1" />
       <NumberInput
-        onChange={subscription.onChangeUnsubscribeAfterNMessages}
-        value={subscription.unsubscribeAfterNMessages}
-        defaultValue={subscription.unsubscribeAfterNMessages}
-        isDisabled={subscription.isSubscribed}
+        onChange={subscribeSingleSubject.onChangeUnsubscribeAfterNMessages}
+        value={subscribeSingleSubject.unsubscribeAfterNMessages}
+        defaultValue={subscribeSingleSubject.unsubscribeAfterNMessages}
+        isDisabled={subscribeSingleSubject.isSubscribed}
       >
         <NumberInputField />
         <NumberInputStepper>
@@ -58,8 +62,8 @@ export const Subscription = (props: SubscriptionProps) => {
       <Box h="6" />
       <Box display="flex" justifyContent="flex-end">
         <Button
-          isDisabled={!subscription.isSubscribed}
-          onClick={subscription.onClickUnsubscribe}
+          isDisabled={!subscribeSingleSubject.isSubscribed}
+          onClick={subscribeSingleSubject.onClickUnsubscribe}
           bg="red.400"
           _hover={{
             bg: "red.300",
@@ -70,8 +74,8 @@ export const Subscription = (props: SubscriptionProps) => {
         </Button>
         <Box w="4" />
         <Button
-          onClick={subscription.onClickSubscribe}
-          isLoading={subscription.isSubscribed}
+          onClick={subscribeSingleSubject.onClickSubscribe}
+          isLoading={subscribeSingleSubject.isSubscribed}
           loadingText="Subscribed"
           colorScheme="blue"
           variant="outline"
@@ -80,7 +84,10 @@ export const Subscription = (props: SubscriptionProps) => {
             bg: "blue.300",
           }}
           textColor="white"
-          isDisabled={subscription.isSubscribed || !subscription.subject}
+          isDisabled={
+            subscribeSingleSubject.isSubscribed ||
+            !subscribeSingleSubject.subject
+          }
         >
           Subscribe
         </Button>
@@ -92,7 +99,7 @@ export const Subscription = (props: SubscriptionProps) => {
         overflowY="scroll"
         mt="6"
       >
-        {subscription.messages.map((message, index) => (
+        {subscribeSingleSubject.messages.map((message, index) => (
           <Text key={`${message}-${index}`} fontSize="medium" as="b" mb="4">
             {`[${index + 1}] - ${JSON.stringify(message)}`}
           </Text>

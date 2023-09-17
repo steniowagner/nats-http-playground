@@ -1,2 +1,2 @@
 export { LoadingNats } from "./LoadingNats";
-export { Subscription } from "./subscription/Subscription";
+export { SubscribeSingleSubject } from "./subscribe-single-subject/SubscribeSingleSubject";
