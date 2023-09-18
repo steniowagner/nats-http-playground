@@ -1,7 +1,11 @@
 import { useEffect } from "react";
-import { Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 
-import { LoadingNats, SubscribeSingleSubject } from "./components";
+import {
+  SubscribeMultiSubjects,
+  LoadingNats,
+  SubscribeSingleSubject,
+} from "./components";
 import { useNats } from "./hooks";
 
 export const App = () => {
@@ -22,12 +26,17 @@ export const App = () => {
     >
       {nats.isConnecting && <LoadingNats />}
       {nats.isConnected && (
-        <>
+        <Box display="flex">
           <SubscribeSingleSubject
             onSubscribe={nats.subscribe}
             onUnsubscribe={nats.unsubscribe}
           />
-        </>
+          <Box w="0.5" h="500px" bg="gray.200" m="24" alignSelf="center" />
+          <SubscribeMultiSubjects
+            onSubscribe={nats.subscribe}
+            onUnsubscribe={nats.unsubscribe}
+          />
+        </Box>
       )}
     </Container>
   );

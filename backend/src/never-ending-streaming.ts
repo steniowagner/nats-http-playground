@@ -8,11 +8,13 @@ import CONSTANTS from "./constants";
   });
   const codec = StringCodec();
   setInterval(() => {
+    console.log(`Publishing to "never-ending-streaming"`);
     server.publish(
       "never-ending-streaming",
       codec.encode(
         JSON.stringify({
-          subject: `Hello from the "never-ending-streaming" subject!`,
+          message: `Hello from the "never-ending-streaming"!`,
+          subject: "never-ending-streaming",
         })
       )
     );

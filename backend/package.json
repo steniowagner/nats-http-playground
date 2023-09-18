@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "multi:never:ending": "npx ts-node src/multi-never-ending-streaming.ts",
     "never:ending": "npx ts-node src/never-ending-streaming.ts",
     "api": "npx ts-node src/api.ts"
   },
