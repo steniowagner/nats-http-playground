@@ -1,9 +1,9 @@
 
 # nats-http-playground
 
-The purpose of this repository is understand the how the [NATS](https://nats.io/) technology works, and how we can integrate it with other applications.
+The purpose of this repository is understand how the [NATS](https://nats.io/) technology works, and how we can integrate it with other applications.
 
-This playground only focus on how NATS' javascript extension works, but you can learn more about the other languages that you can integrate NATS in their [docs](https://docs.nats.io/).
+This playground only focuses on how NATS' javascript extension works, but you can learn more about the other languages that you can integrate NATS in their [docs](https://docs.nats.io/).
 
 
 
@@ -13,13 +13,13 @@ For this experiment, I created a simple react-web-app with [Vite](https://vitejs
 
 - A **never-ending-streaming** that will be posting a single-type of event infinitely.
 - A **multi-never-ending-streaming** that will be posting three different types of events infinitely.
-- An **api** that will generate a single-event during it's processing.
+- An **api** that will generate a single-event after being called.
 
 ### The backend
 
 The backend-functions that will be triggering the events were built with [Nodejs](https://nodejs.org/en).
 - [never-ending-streaming](https://github.com/steniowagner/nats-http-playground/blob/main/backend/src/never-ending-streaming.ts): A script that will generate and publish events of the same subject to NATS in an interval of 1 second.
-- [multi-never-ending-streaming](https://github.com/steniowagner/nats-http-playground/blob/main/backend/src/multi-never-ending-streaming.ts): A script that will generate and publish three different types of events to three different subjects.
+- [multi-never-ending-streaming](https://github.com/steniowagner/nats-http-playground/blob/main/backend/src/multi-never-ending-streaming.ts): A script that will generate and publish three different types of events to three different subjects to NATS in an interval of 1 second.
 - [api](https://github.com/steniowagner/nats-http-playground/blob/main/backend/src/api.ts): a simples REST-api built with [express](https://expressjs.com/) that has a single route that will publish a single event to the same subject.
 
 ### Running
@@ -45,9 +45,9 @@ The UI is pretty simple.
 
 > The **Multi subjects** section is responsible for listening events from the **multi-never-ending-streaming** script.
 
-Each one of them will have a number-input that can control after how many events captured we would want to unsubscribe from the subject. This value must be greater than zero to start to be used, any value below that will not be considered, and the section will be listening for the subject continously.
+Each one of them will have a number-input that can control after how many events captured we would want to unsubscribe from a certain subject. This value must be greater than zero to start to be used, and any value below that will not be considered, and the section will be listening for the subject continously.
 
-Also, each one of them has a Subscribe and an Unsubscribe button, where, as the names suggests, are responsible to subscribe and unsubscribe the section to a certain event.
+Also, each one of them has a Subscribe and an Unsubscribe button, where, as the names suggests, are responsible to subscribe and unsubscribe the section to a certain subject.
 
 At the bottom of both sections, we have the list of all events captured.
 
