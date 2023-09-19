@@ -1,3 +1,3 @@
 export default {
-  SERVER: "demo.nats.io",
+  SERVER: "nats://localhost:4222",
 };

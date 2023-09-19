@@ -6,7 +6,7 @@ import {
   Subscription,
 } from "nats.ws";
 
-const NATS_SERVER_URL = "wss://demo.nats.io:8443";
+const NATS_SERVER_URL = "ws://localhost:8443";
 
 export type SubscribeParams = {
   onReceiveMessage: <T>(data: T) => void;
