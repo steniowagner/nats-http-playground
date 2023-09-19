@@ -32,11 +32,7 @@ export const SubscribeMultiSubjects = (props: SubscribeMultiSubjectsProps) => {
                   )
                 }
                 unsubscribeAfterNMessages={subject.unsubscribeAfterNMessages}
-                onCheck={(value: boolean) =>
-                  subscribeMultiSubjects.onCheck(value, subject.index)
-                }
                 title={subject.title}
-                isChecked={subject.isChecked}
                 onClickSubscribe={() =>
                   subscribeMultiSubjects.onClickSubscribe(subject.index)
                 }

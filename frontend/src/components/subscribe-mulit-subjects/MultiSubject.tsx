@@ -5,30 +5,23 @@ import {
   NumberInputStepper,
   NumberInputField,
   NumberInput,
-  Checkbox,
   Box,
   Button,
+  Text,
 } from "@chakra-ui/react";
 
 type MultiSubjectProps = {
   onChangeUnsubscribeAfterNMessages: (value: string) => void;
-  onCheck: (isChecked: boolean) => void;
   unsubscribeAfterNMessages: string;
   onClickSubscribe: () => void;
   onClickUnsubscribe: () => void;
   isSubscribed: boolean;
   title: string;
-  isChecked: boolean;
 };
 
 export const MultiSubject = (props: MultiSubjectProps) => (
   <Fragment>
-    <Checkbox
-      isChecked={props.isChecked}
-      onChange={(e) => props.onCheck(e.target.checked)}
-    >
-      {props.title}
-    </Checkbox>
+    <Text>{props.title}</Text>
     <NumberInput
       onChange={props.onChangeUnsubscribeAfterNMessages}
       value={props.unsubscribeAfterNMessages}

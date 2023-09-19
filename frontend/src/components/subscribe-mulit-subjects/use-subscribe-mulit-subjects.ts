@@ -4,7 +4,6 @@ import { SubscribeParams } from "../../hooks/use-nats";
 
 type Subject = {
   unsubscribeAfterNMessages: string;
-  isChecked: boolean;
   isSubscribed: boolean;
   index: number;
   title: string;
@@ -31,7 +30,6 @@ export const useSubscribeMultiSubjects = (
         unsubscribeAfterNMessages: "-1",
         title: `Subject-${index + 1}`,
         isSubscribed: false,
-        isChecked: true,
         index,
       }))
   );
@@ -79,18 +77,6 @@ export const useSubscribeMultiSubjects = (
     [props.onUnsubscribe, subjects]
   );
 
-  const handleCheck = useCallback(
-    (isChecked: boolean, subjectIndex: number) => {
-      const subjectsChecks = [...subjects];
-      subjectsChecks[subjectIndex] = {
-        ...subjectsChecks[subjectIndex],
-        isChecked,
-      };
-      setSubjects(subjectsChecks);
-    },
-    [subjects]
-  );
-
   const handleChangeUnsubscribeAfterNMessages = useCallback(
     (subjectIndex: number, value: string) => {
       updateSubjectsState({
@@ -106,7 +92,6 @@ export const useSubscribeMultiSubjects = (
     onChangeUnsubscribeAfterNMessages: handleChangeUnsubscribeAfterNMessages,
     onClickUnsubscribe: handleClickUnsubscribe,
     onClickSubscribe: handleClickSubscribe,
-    onCheck: handleCheck,
     messages,
     subjects,
   };
